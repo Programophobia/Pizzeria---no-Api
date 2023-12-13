@@ -93,6 +93,7 @@ class Product{
     console.log(thisProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     console.log(this.priceElem);
+    thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
   }
 
 
@@ -147,9 +148,10 @@ class Product{
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData', formData);
       console.log(thisProduct.processOrder);
+
        // set price to default price
       let price = thisProduct.data.price;
-
+    
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
@@ -162,18 +164,32 @@ class Product{
         const option = param.options[optionId];
         console.log(optionId, option);
 
+        //if option is clicked, add active class/else remove
+        const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+        const clickedElement = formData[paramId] && formData[paramId].includes(optionId);
+    
+
+        if (optionImage) {
+         if (clickedElement) {
+            optionImage.classList.add(classNames.menuProduct.imageVisible);
+          }
+          else {
+            optionImage.classList.remove(classNames.menuProduct.imageVisible);
+          }
+        }
+
       //if label is clicken and default == true, return: add 0 to price
 
-      if(formData[paramId] && formData[paramId].includes(optionId) && (option.default == true)) {
+      if(clickedElement && (option.default == true)) {
         price == price;
       }
       //if label is clicked and default == null, add option.price to let price
-      else if((formData[paramId] && formData[paramId].includes(optionId) && (!option.default == true))) {
+      else if(clickedElement && (!option.default == true)) {
         price += option.price;
       }
 
       //if label isnt clicked and default true, reduce option.price for let price
-      else if((option.default == true) && !(formData[paramId] && formData[paramId].includes(optionId))) {
+      else if((option.default == true) && !clickedElement) {
       price = price - option.price;
       }
     }
