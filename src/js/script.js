@@ -211,8 +211,9 @@ class AmountWidget{
   constructor(element){
   const thisWidget = this;
   thisWidget.getElements(element);
-  thisWidget.setValue(thisWidget.input.value);
   thisWidget.initActions();
+  thisWidget.setValue(thisWidget.input.value);
+ 
   console.log('AmountWidget:', thisWidget);
   console.log('constructor arguments:', element);
 }
@@ -227,29 +228,35 @@ getElements(element){
 }
 setValue(value){
   const thisWidget = this;
+  console.log('thisWidget',thisWidget);
   const newValue = parseInt(value);
-  //ad validation
 
-  //if(thisWidget){ - z tym tez ok, ale nie tak jest w odp
-    if(thisWidget.value !== newValue && !isNaN(newValue)){
-      thisWidget.value = newValue;
-    }
-  //}
+
+  /*TODO: Add validation*/
+  if (thisWidget.value!== newValue && !isNaN(newValue)
+  && thisWidget.input.value >= settings.amountWidget.defaultMin
+  && thisWidget.input.value <= settings.amountWidget.defaultMax)
+  {
+    thisWidget.value = newValue;
+    console.log('thisWidgetvalue',thisWidget.value);}
+
   thisWidget.input.value = thisWidget.value;
 }
+
 initActions() {
   const thisWidget = this;
   //thisWidget.input.addEventListener('change', thisWidget.setValue);
  thisWidget.input.addEventListener('change', function() {
-  thisWidget.setValue(thisWidget.input.value);
- })
+  thisWidget.setValue(thisWidget.input.value)  })
+   // && thisWidget.value >= settings.amountWidget.defaultMin + 1 && thisWidget.value <= settings.amountWidget.defaultMax - 1);
+// })
   thisWidget.linkDecrease.addEventListener('click', function(event){
     event.preventDefault();
-    thisWidget.setValue(thisWidget.value -1);
+    thisWidget.setValue(thisWidget.value -=1 && thisWidget.value >= settings.amountWidget.defaultMin + 1);
   })
  thisWidget.linkIncrease.addEventListener('click', function(event){
   event.preventDefault();
-  thisWidget.setValue(thisWidget.value +1);
+  thisWidget.setValue(thisWidget.value +=1 && thisWidget.value <= settings.amountWidget.defaultMax - 1);
  })
  
 }
