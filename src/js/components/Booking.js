@@ -104,7 +104,6 @@ class Booking{
                 thisBooking.booked[date][hourBlock] = [];
             }
             thisBooking.booked[date][hourBlock].push(table);
-            console.log('lol', hourBlock);
         }
     }
 
@@ -155,11 +154,15 @@ class Booking{
         thisBooking.dom.hourPicker=element.querySelector(select.widgets.hourPicker.wrapper);
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
         thisBooking.dom.floorPlan = element.querySelector('.floor-plan');
+        thisBooking.dom.bookingBtn = element.querySelector(select.booking.bookingBtn);
+        thisBooking.dom.phone = element.querySelector(select.booking.phone);
+        thisBooking.dom.address = element.querySelector(select.booking.address);
+        thisBooking.dom.starters = element.querySelectorAll(select.booking.starters);
     }
 
     initWidgets(){
         const thisBooking = this;
-        thisBooking.peopleAmountamountWidget = new AmountWidget(thisBooking.dom.peopleAmount);
+        thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
         thisBooking.dom.peopleAmount.addEventListener('updated', function(){})
         thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
         thisBooking.dom.hoursAmount.addEventListener('updated', function(){})
@@ -173,8 +176,13 @@ class Booking{
         });
 
         thisBooking.dom.floorPlan.addEventListener('click', function (event){
-            thisBooking.initTables(event);
-        })
+            thisBooking.initTables(event);   
+        });
+
+        thisBooking.dom.bookingBtn.addEventListener('click', function (event){
+            event.preventDefault();
+            thisBooking.sendBooking();      
+        });
     }
 
     removeTables(){
@@ -184,8 +192,7 @@ class Booking{
            table.classList.remove(classNames.booking.selectedTable);
          }
     }
-
-        
+   
     initTables(event){
         const thisBooking = this;
         const tableId= event.target.getAttribute('data-table');
@@ -200,6 +207,53 @@ class Booking{
             }
             console.log(thisBooking.selected)
     }
+
+    sendBooking(){
+        const thisBooking = this;
+        const url = settings.db.url + '/' + settings.db.bookings;
+        const payload = {
+            date: thisBooking.datePicker.value,
+            hour: thisBooking.hourPicker.value,
+            table: parseInt(thisBooking.selected),
+            duration: parseInt(thisBooking.hoursAmount.value),
+            ppl: parseInt(thisBooking.peopleAmount.value),
+            starters: [],
+            phone: thisBooking.dom.phone.value,
+            address: thisBooking.dom.address.value,
+        };
+
+      for (let starter of thisBooking.dom.starters){
+         if (starter.checked){
+            payload.starters.push(starter.value);
+         }
+        }
+
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        };
+
+        fetch(url, options)
+           .then(function (response){
+                return response.json();
+          }).then(function (){
+                thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+          });
+
+        if( thisBooking.peopleAmount.value !== 1){
+          alert('Order summary: ' + thisBooking.datePicker.value + ' at ' + thisBooking.hourPicker.value + 
+          ', for table number: ' + thisBooking.selected + ' for the duration of ' + thisBooking.hoursAmount.value + 
+          ' hours for ' + thisBooking.peopleAmount.value + ' people. ENJOY');
+        }
+         else {
+            alert('Order summary: ' + thisBooking.datePicker.value + ' at ' + thisBooking.hourPicker.value + 
+            ', for table number: ' + thisBooking.selected + ' for the duration of ' + thisBooking.hoursAmount.value + 
+            ' hour for ' + thisBooking.peopleAmount.value + ' lonely person. I would strongly recommend our free starters in this case. ENJOY');
+        }
+      }
 }
 
 export default Booking
