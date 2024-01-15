@@ -90,6 +90,7 @@ export const select = {
     booking: {
       loading: 'loading',
       tableBooked: 'booked',
+      selectedTable: 'selected',
     },
 
     nav: {
