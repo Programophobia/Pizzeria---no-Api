@@ -1,0 +1,59 @@
+.main-wrapper {
+    background-color: #f1e8e8;
+}
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    
+}
+
+.card .card-body .last {
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+p {
+    margin-top: 20px ;
+    transition: $transition;
+    opacity: 0;
+}
+
+
+.card:hover p {
+transform: translateY(-10px);
+color: #f7f3f3;
+font-weight: bolder;
+opacity: 1;
+}
+
+.icons i{
+   opacity: 0;
+}
+.card {
+    background-color: #f1e8e8;
+    border: none;
+}
+.card:hover i {
+    transform: translateY(-90px);
+    color: #f67a7a;
+    font-weight: bolder;
+    opacity: 1;
+    font-size: 30px;
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
