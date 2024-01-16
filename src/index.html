@@ -21,8 +21,10 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#main">Main Page</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
+          <a href="#about">About Us</a>
       </div>
         <div id="cart" class="cart">
           <div class="cart__summary">
@@ -62,6 +64,11 @@
   </header>
 
   <div id="pages">
+    <section id="main">
+      <div class="main-wrapper container">
+
+      </div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -181,7 +188,7 @@
           <div class="time-picker">
             <div class="date-picker">
               <label class="booking-option-title">Pick a date</label>
-              <input type="text" name="date">
+              <input type="text" name="date" id="current-date">
             </div>
             <div class="hour-picker range-slider">
                 <div class="output"></div>
