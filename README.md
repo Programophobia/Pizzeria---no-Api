@@ -1,3 +1,1 @@
-version 2.4
-AEZAKMI
- ~ /god
+https://5d4f8bd8-7857-456b-ae08-6c82fce519ca-00-33osdzebutysa.riker.replit.dev/
