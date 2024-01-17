@@ -49,7 +49,7 @@ import Booking from './components/Booking.js';
           page.classList.toggle(classNames.pages.active, page.id == pageId);
         }
 
-        //add class active to matching lings, and remove from not matching
+        //add class active to matching links, and remove from not matching
         for(let link of thisApp.navLinks){
           link.classList.toggle(
             classNames.nav.active, 
@@ -95,6 +95,8 @@ import Booking from './components/Booking.js';
           app.cart.add(event.detail.product);  
         });
       },
+
+      
 
       init: function(){
         const thisApp = this;
