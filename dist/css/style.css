@@ -769,7 +769,7 @@ input.error, select.error {
   color: rgb(78, 36, 16);
 }
 
-.card::after {
+.card-1::after {
   position: absolute;
   content: "";
   width: 100%;
@@ -779,7 +779,7 @@ input.error, select.error {
   opacity: 0;
 }
 
-.card:hover::after {
+.card-1:hover::after {
   position: absolute;
   opacity: 20%;
 }

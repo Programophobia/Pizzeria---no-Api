@@ -54,7 +54,7 @@ opacity: 1;
 
 //Gallery
 
-.card::after {
+.card-1::after {
     position: absolute;
     content: '';
     width: 100%;
@@ -65,7 +65,7 @@ opacity: 1;
 }
 
 
-.card:hover::after {
+.card-1:hover::after {
     position: absolute;
     opacity: 20%;
     }

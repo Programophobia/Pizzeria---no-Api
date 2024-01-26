@@ -55,6 +55,8 @@ export const select = {
 
     nav: {
       links: '.main-nav a',
+      button: '.btn-secondary'
+
     },
 
     cart: {

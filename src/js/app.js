@@ -96,7 +96,40 @@ import Booking from './components/Booking.js';
         });
       },
 
-      
+      initButtons: function() {
+        const thisApp = this;
+
+        thisApp.pages = document.querySelector(select.containerOf.pages).children;
+        thisApp.navButton = document.querySelectorAll(select.nav.button);
+
+        const idFromHash = window.location.hash.replace('#/', '');
+
+        let pageMatchingHash = thisApp.pages[0].id;
+
+        for(let page of thisApp.pages){
+          if(page.id == idFromHash){
+            pageMatchingHash = page.id;
+            break;
+          }
+        }
+
+        thisApp.activatePage(pageMatchingHash);
+       
+        for(let link of thisApp.navButton){
+          link.addEventListener('click', function(event){
+            const clickedElement = this;
+            event.preventDefault();
+
+         
+            const id = clickedElement.getAttribute('href').replace('#', '')
+
+            thisApp.activatePage(id);
+
+           
+            window.location.hash = '#/' + id;
+          })
+        }
+      },
 
       init: function(){
         const thisApp = this;
@@ -104,6 +137,7 @@ import Booking from './components/Booking.js';
         thisApp.initCart();
         thisApp.initPages();
         thisApp.initBooking();
+        thisApp.initButtons();
       }
     };
   app.init();
