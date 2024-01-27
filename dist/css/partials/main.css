@@ -1,17 +1,100 @@
-/* Error: Undefined variable.
- *    ,
- * 23 |     transition: $transition;
- *    |                 ^^^^^^^^^^^
- *    '
- *   src\sass\partials\main.scss 23:17  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 23 \2502      transition: $transition;\d\a    \2502                  ^^^^^^^^^^^\a    \2575 \a   src\\sass\\partials\\main.scss 23:17  root stylesheet";
+.main-wrapper {
+  background-color: #f1e8e8;
 }
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card .card-body .last {
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.btn-secondary {
+  text-align: center;
+}
+
+.card-body p {
+  margin-top: 20px;
+  transition: all 0.5s ease-out;
+  opacity: 0;
+}
+
+.card:hover p {
+  transform: translateY(-20px);
+  color: #f7f3f3;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+.carousel-cell {
+  display: flex;
+  text-align: center;
+  height: 200px;
+  padding: 0 20px;
+}
+
+.carousel-cell img {
+  width: 300px;
+  height: 200px;
+}
+
+.opinion {
+  padding: 20px;
+}
+
+.feedback-name {
+  font-size: 20px;
+  font-style: oblique;
+  font-weight: bolder;
+  color: rgb(78, 36, 16);
+}
+
+.opinion h4 {
+  font-style: oblique;
+  font-weight: bolder;
+  color: rgb(78, 36, 16);
+}
+
+.card-1::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 88.5%;
+  background-color: rgb(80, 83, 83);
+  top: 0;
+  opacity: 0;
+}
+
+.card-1:hover::after {
+  position: absolute;
+  opacity: 20%;
+}
+
+.icons {
+  max-height: 20px;
+}
+
+.icons i {
+  opacity: 0;
+}
+
+.card {
+  background-color: #f1e8e8;
+  border: none;
+}
+
+.card:hover i {
+  transform: translateY(-90px);
+  transition: color 2s;
+  color: #f01e1e;
+  font-weight: bolder;
+  opacity: 1;
+  font-size: 30px;
+}
+
+/*# sourceMappingURL=main.css.map */

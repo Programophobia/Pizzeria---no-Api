@@ -18,14 +18,19 @@
     text-align: center;
 }
 
+.btn-secondary{
+    text-align: center;
+}
+
+
 .card-body p {
     margin-top: 20px ;
-    transition: $transition;
+    transition: all 0.5s ease-out;
     opacity: 0;
 }
 
 .card:hover p {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
     color: #f7f3f3;
     font-weight: bolder;
     opacity: 1;
@@ -36,7 +41,16 @@
 .carousel-cell {
     display: flex;
     text-align: center;
-    position: 0 0 2;
+    height: 200px;
+    padding: 0 20px;
+}
+
+.carousel-cell img {
+    width: 300px;
+    height: 200px;
+}
+.opinion{
+    padding: 20px;
 }
 
 .feedback-name {
@@ -82,7 +96,7 @@
 
 .card:hover i {
     transform: translateY(-90px);
-    transition: $transition;
+    transition: color 2s;
     color: #f01e1e;
     font-weight: bolder;
     opacity: 1;
