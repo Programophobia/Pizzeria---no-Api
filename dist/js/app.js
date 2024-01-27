@@ -12,7 +12,6 @@ import Booking from './components/Booking.js';
         thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
         const idFromHash = window.location.hash.replace('#/', '');
-
         let pageMatchingHash = thisApp.pages[0].id;
 
         for(let page of thisApp.pages){
@@ -21,7 +20,6 @@ import Booking from './components/Booking.js';
             break;
           }
         }
-
         thisApp.activatePage(pageMatchingHash);
        
         for(let link of thisApp.navLinks){
@@ -29,13 +27,9 @@ import Booking from './components/Booking.js';
             const clickedElement = this;
             event.preventDefault();
 
-            //get page id from href
             const id = clickedElement.getAttribute('href').replace('#', '')
-
-            // run thisApp.activePage with that id
             thisApp.activatePage(id);
 
-            //change URL hash
             window.location.hash = '#/' + id;
           })
         }
@@ -44,12 +38,9 @@ import Booking from './components/Booking.js';
       activatePage: function(pageId){
         const thisApp = this;
         
-        //add class active to matching pages and remove from non matching
         for(let page of thisApp.pages){
           page.classList.toggle(classNames.pages.active, page.id == pageId);
         }
-
-        //add class active to matching links, and remove from not matching
         for(let link of thisApp.navLinks){
           link.classList.toggle(
             classNames.nav.active, 
@@ -89,7 +80,6 @@ import Booking from './components/Booking.js';
         const thisApp = this;
         const cartElem = document.querySelector(select.containerOf.cart);
         thisApp.cart = new Cart(cartElem);
-
         thisApp.productList = document.querySelector(select.containerOf.menu);
         thisApp.productList.addEventListener('add-to-cart', function(event){
           app.cart.add(event.detail.product);  
@@ -103,7 +93,6 @@ import Booking from './components/Booking.js';
         thisApp.navButton = document.querySelectorAll(select.nav.button);
 
         const idFromHash = window.location.hash.replace('#/', '');
-
         let pageMatchingHash = thisApp.pages[0].id;
 
         for(let page of thisApp.pages){
@@ -112,7 +101,6 @@ import Booking from './components/Booking.js';
             break;
           }
         }
-
         thisApp.activatePage(pageMatchingHash);
        
         for(let link of thisApp.navButton){
@@ -120,12 +108,8 @@ import Booking from './components/Booking.js';
             const clickedElement = this;
             event.preventDefault();
 
-         
             const id = clickedElement.getAttribute('href').replace('#', '')
-
             thisApp.activatePage(id);
-
-           
             window.location.hash = '#/' + id;
           })
         }

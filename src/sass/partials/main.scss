@@ -1,5 +1,5 @@
 //GLOBAL
-
+ 
 .main-wrapper {
     background-color: #f1e8e8;
 }
@@ -20,15 +20,15 @@
 
 .card-body p {
     margin-top: 20px ;
-    transition: $transition; // $-wstaw
+    transition: $transition;
     opacity: 0;
 }
 
 .card:hover p {
-transform: translateY(-10px);
-color: #f7f3f3;
-font-weight: bolder;
-opacity: 1;
+    transform: translateY(-10px);
+    color: #f7f3f3;
+    font-weight: bolder;
+    opacity: 1;
 }
 
 //CARUSEL
@@ -64,7 +64,6 @@ opacity: 1;
     opacity: 0;
 }
 
-
 .card-1:hover::after {
     position: absolute;
     opacity: 20%;
@@ -83,14 +82,13 @@ opacity: 1;
 
 .card:hover i {
     transform: translateY(-90px);
-    transition: $transition; //$
-    color: #f67a7a;
+    transition: $transition;
+    color: #f01e1e;
     font-weight: bolder;
     opacity: 1;
     font-size: 30px;
 }
 
-    
 
 
 

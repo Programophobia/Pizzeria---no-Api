@@ -19,13 +19,9 @@ class Product {
 
     renderInMenu(){
       const thisProduct = this;
-      //generate html based on template
       const generatedHTML = templates.menuProduct(thisProduct.data);
-      //create element using utils.createElementFromHTML
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
-      //find menu container
       const menuContainer = document.querySelector(select.containerOf.menu);
-      //add element to menu
       menuContainer.appendChild(thisProduct.element);
     }
   
@@ -50,24 +46,16 @@ class Product {
     }
     initAccordion() {
       const thisProduct = this;
-      //find the clicable trigger (the element that should react to clicking)
-      //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-
-      /* START: add event listener to clickable trigger on event click */
+      
       this.accordionTrigger.addEventListener('click', function(event) {
-      /* prevent default action for event */
-      event.preventDefault();
-        /* find active product (product that has active class) */
-      // const activeProduct = document.querySelector(classNames.menuProduct.wrapperActive);
-      const activeProduct = document.querySelector(select.all.menuProductsActive)
-      //if there is active product and it's not thisProduct.element, remove class active from it */
-      if (activeProduct !== null && activeProduct !== thisProduct.element) {
-    
-        activeProduct.classList.remove(classNames.menuProduct.wrapperActive); //==activeProduct.classList.remove('active')
-      }
+        event.preventDefault();
+        const activeProduct = document.querySelector(select.all.menuProductsActive)
+      
+        if (activeProduct !== null && activeProduct !== thisProduct.element) {
+           activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+        }
 
-      /* toggle active class on thisProduct.element */
-      thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive); //== thisProduct.element.classList.toggle('active)
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive); 
       });
       }
 
@@ -96,20 +84,13 @@ class Product {
        const thisProduct = this;
        const formData = utils.serializeFormToObject(thisProduct.form);
  
-        // set price to default price
        let price = thisProduct.data.price;
      
-       // for every category (param)...
        for(let paramId in thisProduct.data.params) {
-         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
-         const param = thisProduct.data.params[paramId];
- 
-       // for every option in this category
-       for(let optionId in param.options) {
-         // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+        const param = thisProduct.data.params[paramId];
+        for(let optionId in param.options) {
+        
          const option = param.options[optionId];
- 
-         //if option is clicked, add active class/else remove
          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
          const clickedElement = formData[paramId] && formData[paramId].includes(optionId);
      
@@ -122,17 +103,12 @@ class Product {
            }
          }
  
-       //if label is clicken and default == true, return: add 0 to price
- 
        if(clickedElement && (option.default == true)) {
          price == price;
        }
-       //if label is clicked and default == null, add option.price to let price
        else if(clickedElement && (!option.default == true)) {
          price += option.price;
        }
- 
-       //if label isnt clicked and default true, reduce option.price for let price
        else if((option.default == true) && !clickedElement) {
        price = price - option.price;
        }
@@ -140,8 +116,6 @@ class Product {
    }
 
    thisProduct.priceSingle = price;
-   
-   // update calculated price in the HTML
    price = price * thisProduct.amountWidget.value; 
    thisProduct.priceElem.innerHTML = price;
   }
@@ -187,7 +161,6 @@ class Product {
 
       addToCart(){
         const thisProduct = this;
-        //app.cart.add(thisProduct.prepareCartProduct());
         const event = new CustomEvent('add-to-cart', {
           bubbles: true,
           detail: {
@@ -198,5 +171,4 @@ class Product {
         thisProduct.element.dispatchEvent(event);
       }
   }
-
-  export default Product;
+export default Product;
