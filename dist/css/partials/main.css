@@ -1,5 +1,9 @@
+.main {
+  padding: 40px 0;
+}
+
 .main-wrapper {
-  background-color: #f1e8e8;
+  background-color: #ffffff;
 }
 
 .card img {
@@ -9,13 +13,18 @@
 }
 
 .card .card-body .last {
-  color: white;
-  font-weight: bolder;
+  color: rgb(255, 254, 254);
   text-align: center;
+  font-weight: 900;
 }
 
 .btn-secondary {
-  text-align: center;
+  width: 100%;
+  margin: 45px 0 0 0;
+}
+
+.btn-secondary:hover {
+  background-color: inherit;
 }
 
 .card-body p {
@@ -84,7 +93,7 @@
 }
 
 .card {
-  background-color: #f1e8e8;
+  background-color: #ffffff;
   border: none;
 }
 
