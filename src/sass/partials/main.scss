@@ -21,13 +21,17 @@
     font-weight: 900;
 }
 
-.btn-secondary{
+.btn-secondary-main{
     width: 100%;
-    margin: 45px 0 0 0;  
+    margin: 45px 0 0 0; 
+    color: white;
+    background-color: #ff6b6b;
 }
 
-.btn-secondary:hover {
+.btn-secondary-main:hover {
     background-color: inherit;
+    color: white;
+    border: solid;
 }
 
 .card-body p {
@@ -64,13 +68,13 @@
     font-size: 20px;
     font-style: oblique;
     font-weight: bolder;
-    color: rgb(78, 36, 16);
+    color:  #ff6b6b;
 }
 
 .opinion h4 {
     font-style: oblique;
     font-weight: bolder;
-    color: rgb(78, 36, 16);
+    color:  #ff6b6b;
 }
 
 //Gallery
