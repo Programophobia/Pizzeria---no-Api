@@ -21,11 +21,13 @@ class BaseWidget{
 
     if (thisWidget.correctValue !== newValue && this.isValid(newValue)) {
         thisWidget.correctValue = newValue;
-        thisWidget.announce();
+       // thisWidget.announce();
     } else {
       thisWidget.correctValue = settings.amountWidget.defaultValue;
     }
+   
     thisWidget.renderValue();
+    thisWidget.announce();
   }
 
   setValue(value){

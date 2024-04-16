@@ -7,13 +7,13 @@ class AmountWidget extends BaseWidget{
       super(element, settings.amountWidget.defaultValue);
     const thisWidget = this;
     thisWidget.getElements(element);
-  
+    thisWidget.initActions();
    if (thisWidget.dom.input.value === '' || thisWidget.dom.input.value === undefined ) {
       thisWidget.setValue(settings.amountWidget.defaultValue)
     } else {
       thisWidget.setValue(thisWidget.dom.input.value);
     }
-    thisWidget.initActions();
+    //thisWidget.initActions();
    }
 
     getElements(){ 

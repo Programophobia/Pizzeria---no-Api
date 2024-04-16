@@ -69,13 +69,16 @@ import Booking from './components/Booking.js';
         });
       },
 
-      initMenu(){
+    
+      initMenu: function(){
         const thisApp = this;
-        for (let productData in thisApp.data.products) {
-          new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
-        }
+        console.log(thisApp.data);
+        
+       for(let productData in thisApp.data.products){
+        new Product(productData, thisApp.data.products[productData]);
+        console.log(thisApp.data.products[productData]);
+       }
       },
-
       initCart: function(){
         const thisApp = this;
         const cartElem = document.querySelector(select.containerOf.cart);
@@ -118,6 +121,7 @@ import Booking from './components/Booking.js';
       init: function(){
         const thisApp = this;
         thisApp.initData();
+        thisApp.initMenu();
         thisApp.initCart();
         thisApp.initPages();
         thisApp.initBooking();
